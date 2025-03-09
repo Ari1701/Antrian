@@ -1,0 +1,41 @@
+body {
+    background-image: url('/img/template gambar.png'); /* Ganti URL gambar dengan URL gambar yang sesuai */
+    background-size: cover;
+    font-family: Arial, sans-serif;
+}
+
+.container-fluid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.box {
+    padding: 50px;
+    width: 650px;
+    background-color: aliceblue;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.box-body {
+    margin-top: 20px;
+}
+
+
+
+.btn-primary {
+    background-color: #2600ff;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 14px 40px;
+    font-size: 1.25rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #ffffff;
+    color:  #2600ff;
+}
