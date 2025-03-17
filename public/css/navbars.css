@@ -1,5 +1,8 @@
 body {
   padding-bottom: 20px;
+  background-image: url('/img/landscape.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 .navbar {

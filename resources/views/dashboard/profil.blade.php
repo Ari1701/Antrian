@@ -20,12 +20,12 @@
                                 <div class="card-body">
                                     <p><strong>Nama:</strong> {{ $users->name }}</p>
                                     <p><strong>Email:</strong> {{ $users->email }}</p>
+                                    <p><strong>Tanggal Lahir:</strong> {{ \Carbon\Carbon::parse($users->tgl_lahir)->locale('id')->translatedFormat('j F Y') }}</p>
                                     <p><strong>Alamat:</strong> {{ $users->alamat }}</p>
                                     <p><strong>Jenis Kelamin:</strong> {{ $users->jenis_kelamin }}</p>
                                     <p><strong>No KTP:</strong> {{ $users->no_ktp }}</p>
                                     <p><strong>No HP:</strong> {{ $users->no_hp }}</p>
                                     <p><strong>Pekerjaan:</strong> {{ $users->pekerjaan }}</p>
-                                    <p><strong>Dibuat Pada:</strong> {{ \Carbon\Carbon::parse($users->created_at)->translatedFormat('j F Y') }}</p>
                                 </div>
                             </tbody>
                         </table>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Antrian;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use Carbon\Carbon;
 
 class AntrianController extends Controller
 {
@@ -33,6 +35,11 @@ class AntrianController extends Controller
             $poli_list = Antrian::select('poli')->groupBy('poli')->pluck('poli');
 
         return view('dashboard.antrian.create', compact('antrians', 'poli_list', 'search', 'poli_filter'));
+
+        $this->hapusAntrianLama();
+
+        $antrians = Antrian::where('user_id', auth()->id())->get();
+        return view('dashboard.utama', compact('antrians'));
     }
 
     public function create()
@@ -82,5 +89,23 @@ class AntrianController extends Controller
     
         return $no_antrian;
     }
+
+    public function cetakAntrian($id)
+    {
+        $antrian = Antrian::where('id', $id)->where('user_id', auth()->id())->firstOrFail();
+        
+        $pdf = FacadePdf::loadView('dashboard.antrian.cetak', compact('antrian'));
+        return $pdf->stream('antrian-' . $antrian->no_antrian . '.pdf');
+    }
     
+    public function hapusAntrianLama()
+    {
+        $batasWaktu = Carbon::now()->subHours(12);
+
+        $jumlahTerhapus = Antrian::where('created_at', '<', $batasWaktu)->delete();
+
+        return response()->json([
+            'message' => "$jumlahTerhapus antrian telah dihapus."
+        ]);
+    }
 }

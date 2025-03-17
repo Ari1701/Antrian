@@ -30,6 +30,33 @@ class UserController extends Controller
         return view('dashboard.utama', compact('antrians', 'poli_list', 'search', 'poli_filter'));
     }
 
+    public function edit()
+    {
+        $user = auth()->user();
+        return view('dashboard.edit-profil', compact('user'));
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'tgl_lahir' => 'required|date',
+            'alamat' => 'required|string',
+            'jenis_kelamin' => 'required|string',
+            'no_ktp' => 'required|string|max:16',
+            'no_hp' => 'required|string|max:15',
+            'pekerjaan' => 'required|string|max:255',
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->update($request->all());
+
+        return redirect()->route('dashboard.profil')->with('success', 'Data berhasil diperbarui!');
+    }
+
+
     public function profile()
     {
         {

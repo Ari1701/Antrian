@@ -15,43 +15,8 @@
                                 mengambil antrian
                                 Sesuai Poliklinik terlebih dahulu dari rumah</p>
             <div class="buttons">
-                
-                <a href="/login"><button class="btn primary">Ambil Antrian</button></a>
+                <a href="/login"><button class="btn primary">Login</button></a>
             </div>
-        </div>
-    </section>
-    <section class="section" id="artikel">
-        <div class="content">
-            <h2>Jadwal Dokter</h2>
-            <p>Temukan berbagai artikel menarik tentang kesehatan mental dan cara mengelola stres dengan baik.</p>
-        </div>
-    </section>
-
-    <section class="section" id="psikolog">
-        <div class="content">
-            <h2>Dokter</h2>
-            <p>Kenali psikolog kami yang berpengalaman dan siap membantu kamu dalam perjalanan kesehatan mentalmu.</p>
-        </div>
-    </section>
-    
-    <section class="section" id="antrian">
-        <div class="content">
-            <h2>Antrian Saat Ini</h2>
-            <p>Jika kamu memiliki pertanyaan atau butuh bantuan, jangan ragu untuk menghubungi kami.</p>
-        </div>
-    </section>
-    
-    <section class="section" id="tentang">
-        <div class="content">
-            <h2>Tentang Kami</h2>
-            <p>SIKonsul adalah platform yang menyediakan konsultasi kesehatan mental secara online dengan psikolog profesional.</p>
-        </div>
-    </section>
-
-    <section class="section" id="hubungi">
-        <div class="content">
-            <h2>Hubungi Kami</h2>
-            <p>Jika kamu memiliki pertanyaan atau butuh bantuan, jangan ragu untuk menghubungi kami.</p>
         </div>
     </section>
 

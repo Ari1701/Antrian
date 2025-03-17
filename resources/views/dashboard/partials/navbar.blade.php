@@ -8,7 +8,7 @@
           <a class="navbar-brand col-lg-3 me-0" href="#">Puskesmas Delanggu</a>
           <ul class="navbar-nav col-lg-6 justify-content-lg-center">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/dashboard/utama">Home</a>
+              <a class="nav-link active" aria-current="page" href="/utama">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/jadwal">Jadwal Dokter</a>
@@ -17,7 +17,7 @@
               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Profil</a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="/profil">Lihat Profil</a></li>
-                <li><a class="dropdown-item" href="#">Edit Profil</a></li>
+                <li><a class="dropdown-item" href="/profil-edit">Edit Profil</a></li>
               </ul>
             </li>
           </ul>

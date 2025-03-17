@@ -34,7 +34,7 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/dashboard/utama', [UserController::class, 'index'])->name('dashboard.utama');
+Route::get('/utama', [UserController::class, 'index'])->name('dashboard.utama');
 Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
 
 Route::resource('jadwal', JadwalDokterController::class);
@@ -44,6 +44,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/antrian/create', [AntrianController::class, 'create'])->name('dashboard.antrian.create');
     Route::post('/antrian', [AntrianController::class, 'store'])->name('antrian.store');
     Route::get('/profil', [UserController::class, 'profile'])->name('dashboard.profil');
+    Route::get('/profil-edit', [UserController::class, 'edit'])->name('dashboard.edit-profil');
+    Route::put('/profil/{id}', [UserController::class, 'update'])->name('dashboard.update-profil');
+    Route::get('/antrian-pdf/{id}', [AntrianController::class, 'cetakAntrian'])->name('antrian.pdf');
+    Route::get('/hapus-antrian', [AntrianController::class, 'hapusAntrianLama']);
+
 });
 
 

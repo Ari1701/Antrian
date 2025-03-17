@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.app')
 
-@section('title', 'home') 
+@section('title', 'Home') 
 
 @section('content') 
 <div class="container text-center">
@@ -8,11 +8,45 @@
         <div class="d-flex justify-content-center col-md-3">
             <a href="/antrian" class="btn btn-primary w-100 h-80 mb-3" id="ambilAntrian">Ambil Antrian</a>
         </div>
+        <div class="container">
+            <div class="card mt-3">
+                <div class="card-body">
+                    <div class="card-title"  style="text-align: center">Antrian Saya</div>
+                    <div class="row">
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="table_id">
+                            <tbody>
+                                @foreach ($antrians->where('user_id', auth()->id()) as $antrian)
+                                    <tr style="text-align: center">
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $antrian->user->name }}</td>
+                                        <td>{{ $antrian->no_antrian }}</td>
+                                        <td>{{ $antrian->poli }}</td>
+                                        <td>{{ $antrian->sesi }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($antrian->tgl_antrian)->locale('id')->translatedFormat('j F Y') }}</td>
+                                        <td>
+                                            <a href="{{ route('antrian.pdf', $antrian->id) }}" class="btn btn-primary" target="_blank">Cetak / Lihat PDF</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        {{ $antrians->links() }}
+                    
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
         <div class="container">
             <div class="card mt-3">
                 <div class="card-body">
-                    <div class="card-title"  style="text-align: center">Antrian</div>
+                    <div class="card-title"  style="text-align: center">Semua Antrian</div>
                     <div class="row">
                 <div class="col-md-9">
                     <div class="mb-3">

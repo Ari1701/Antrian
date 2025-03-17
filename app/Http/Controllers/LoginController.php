@@ -33,7 +33,7 @@ class LoginController extends Controller
             case 3:
                 return '/admin';
             case 2:
-                return '/dashboard/utama';
+                return '/utama';
             default:
                 return '/login'; 
         }
