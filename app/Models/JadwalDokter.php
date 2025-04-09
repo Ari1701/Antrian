@@ -21,4 +21,6 @@ class JadwalDokter extends Model
         'jam_mulai',
         'jam_selesai',
     ];
+
+    public $timestamps = false;
 }

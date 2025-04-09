@@ -22,11 +22,6 @@
                             <form method="GET" action="{{ route('jadwal.index') }}">
                                 <div class="row mb-4">
                                     <div class="col-md-4">
-                                        <input type="text" name="search" value="{{ request()->search }}" class="form-control"
-                                            placeholder="Cari Nama atau NIP">
-                                    </div>
-
-                                    <div class="col-md-4">
                                         <select name="poli_filter" class="form-select">
                                             <option value="">-- Pilih Poli --</option>
                                             @foreach($poli_list as $poli)

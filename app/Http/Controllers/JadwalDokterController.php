@@ -34,12 +34,12 @@ class JadwalDokterController extends Controller {
     }
 
     public function create() {
-        return view('jadwal.create');
+        return view('admin.menu.jadwal-create');
     }
 
     public function store(Request $request) {
         $request->validate([
-            'nip' => 'required|string|unique:jadwal_dokters,nip',
+            'nip' => 'required|string|unique:jadwal_dokter,nip',
             'nama_dokter' => 'required|string|max:255',
             'poli' => 'required|string',
             'sesi' => 'required|string',
@@ -47,36 +47,54 @@ class JadwalDokterController extends Controller {
             'jam_selesai' => 'required|after:jam_mulai',
         ]);
 
-        JadwalDokter::create($request->all());
 
-        return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil ditambahkan.');
+        JadwalDokter::create([
+            'nip' => $request->nip,
+            'nama_dokter' => $request->nama_dokter,
+            'poli' => $request->poli,
+            'sesi' => $request->sesi,
+            'jam_mulai' => $request->jam_mulai,  
+            'jam_selesai' => $request->jam_selesai,
+        ]);
+
+        return redirect()->route('admin.menu.jadwal-show')->with('success', 'Jadwal berhasil ditambahkan.');
     }
 
-    public function edit($id) {
+    public function editjadwal($id)
+    {
         $jadwal = JadwalDokter::findOrFail($id);
-        return view('jadwal.edit', compact('jadwal'));
+        return view('admin.menu.jadwal-edit', compact('jadwal'));
     }
 
-    public function update(Request $request, $id) {
+    public function updatejadwal(Request $request, $id)
+    {
         $jadwal = JadwalDokter::findOrFail($id);
-
+    
         $request->validate([
-            'nip' => 'required|string|unique:jadwal_dokters,nip,' . $id,
             'nama_dokter' => 'required|string|max:255',
-            'poli' => 'required|string',
-            'sesi' => 'required|string',
-            'jam_mulai' => 'required',
-            'jam_selesai' => 'required|after:jam_mulai',
+            'poli' => 'required|in:umum,gigi,tht,lansia & disabilitas,balita,kia & kb,nifas/pnc',
+            'sesi' => 'required|in:Pagi,Siang,Sore,Malam',
+            'jam_mulai' => 'required|date_format:H:i',
+            'jam_selesai' => 'required|date_format:H:i|after:jam_mulai',
         ]);
-
-        $jadwal->update($request->all());
-
-        return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil diperbarui.');
+        
+        $jadwal->nama_dokter = $request->nama_dokter;
+        $jadwal->poli = $request->poli;
+        $jadwal->sesi = $request->sesi;
+        $jadwal->jam_mulai = $request->jam_mulai;
+        $jadwal->jam_selesai = $request->jam_selesai;
+        $jadwal->save();
+    
+        return redirect()->route('admin.menu.jadwal-show')->with('success', 'Jadwal berhasil diperbarui!');
     }
 
-    public function destroy($id) {
-        JadwalDokter::findOrFail($id)->delete();
-        return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil dihapus.');
+    public function destroy($id)
+    {
+        $jadwal = JadwalDokter::findOrFail($id);
+        $jadwal->delete();
+
+        return redirect()->route('admin.menu.jadwal-show')
+            ->with('success', 'Jadwal berhasil dihapus!');
     }
 
 }
